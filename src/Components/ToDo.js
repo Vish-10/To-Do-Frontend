@@ -56,10 +56,14 @@ function ToDo(props){
         if(type === 'delete'){
             for(let i = 0; i < listTasks.length; i++){
                 if(listTasks[i].taskName === taskName){
-                    deleteTasks(props.user.id, listTasks[i]._id);
-                    listTasks.splice(i, 1);
+                    var temp = listTasks.splice(i, 1);
+                    console.log(temp);
+                    deleteTasks(props.user.id, temp[0]._id);
+                    break;
                 }
-                else{
+            }
+
+            for(let i = 0; i < listTasks.length; i++){{
                     tasksT[listTasks[i].taskStatus].push(
                         <div key = {listTasks[i].taskName} draggable className = "draggable" onDragStart={(e) => onDragStart(e, listTasks[i].taskName)}>
                                     {listTasks[i].taskName}
